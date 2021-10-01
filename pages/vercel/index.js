@@ -1,4 +1,5 @@
 import VercelComponent from "../../components/VercelComponent";
+import { getData } from "../../api/vercel";
 
 function Vercel(json) {
   return (
@@ -8,8 +9,8 @@ function Vercel(json) {
   );
 }
 
-Vercel.getInitialProps = async (ctx) => {
-  const res = await fetch("https://api.github.com/repos/vercel/next.js");
+Vercel.getInitialProps = async ({ req }) => {
+  const res = await getData();
   const json = await res.json();
   return json;
 };
