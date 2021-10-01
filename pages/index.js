@@ -9,6 +9,9 @@ export default function Home() {
       <Link href="/users">
         <button>Users</button>
       </Link>
+      <Link href="/vercel">
+        <button>Vercel</button>
+      </Link>
     </div>
   );
 }
