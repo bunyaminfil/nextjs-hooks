@@ -1,18 +1,18 @@
 import VercelComponent from "../../components/VercelComponent";
-import { getData } from "../../api/vercel";
+import axios from "axios";
 
-function Vercel(json) {
-  return (
-    <div>
-      <VercelComponent data={json} />
-    </div>
-  );
+function Vercel({ data, error }) {
+  return <VercelComponent data={data} />;
 }
 
-Vercel.getInitialProps = async ({ req }) => {
-  const res = await getData();
-  const json = await res.json();
-  return json;
+Vercel.getInitialProps = async (ctx) => {
+  try {
+    const res = await axios.get("https://api.github.com/repos/vercel/next.js");
+    const data = res.data;
+    return { data };
+  } catch (error) {
+    return { error };
+  }
 };
 
 export default Vercel;
